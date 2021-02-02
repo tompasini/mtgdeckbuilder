@@ -1,6 +1,6 @@
 <template>
   <div class="home container-fluid">
-    <div class="row justify-content-around">
+    <div v-if="account._id" class="row justify-content-around">
       <div class="col-md-3">
         <h3>Search:</h3>
         <form @submit.prevent="searchCards(state.cardSearch)">
@@ -15,7 +15,7 @@
       <div class="col-md-3">
         <div class="row">
           <div class="col-12">
-            <h1>Active Card</h1>
+            <h1>Selected Card</h1>
           </div>
           <div v-if="activeCard.name" class="col-12">
             <img class="img-fluid" v-if="activeCard" :src="activeCard.image_uris.normal" alt="">
@@ -24,6 +24,11 @@
       </div>
       <div class="col-md-3">
         <h1>Deck List</h1>
+      </div>
+    </div>
+    <div v-else class="row justify-content-center">
+      <div class="col-6">
+        <h1>Log in to start making decks!</h1>
       </div>
     </div>
   </div>
@@ -44,6 +49,7 @@ export default {
       state,
       cards: computed(() => AppState.cards),
       activeCard: computed(() => AppState.activeCard),
+      account: computed(() => AppState.account),
       searchCards(cardSearch) {
         scryfallService.searchCards(cardSearch)
         state.cardSearch = ''
