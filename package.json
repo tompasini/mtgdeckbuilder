@@ -1,0 +1,11 @@
+
+  {
+    "name": "mtgdecklistcreator",
+    "version": "1.0.0",
+    "scripts": {
+      "setup": "npm run setup:client && npm run setup:server",
+      "setup:client": "cd mtgdecklistcreator.client && npm i",
+      "setup:server": "cd mtgdecklistcreator.server && npm i"
+    }
+  }
+  
